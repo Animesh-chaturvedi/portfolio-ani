@@ -1,5 +1,8 @@
 "use client";
 
+import { motion } from "framer-motion";
+import { HiDownload } from "react-icons/hi";
+
 const experiences = [
   {
     title: "Senior Software Engineer",
@@ -25,8 +28,8 @@ const experiences = [
     company: "Lal10",
     period: "Jun 2022 – Jul 2023",
     details: [
-      "Improved Chrome’s lighthouse score to 96 by migrating the codebase to Next.js and implementing SSR which led to significant improvement in load time and code base size.",
-      "Developed APIs on Lambda Functions in Node.js to facilitate smooth integration with ZOHOCRM, ZOHOERP, and Algolia, improving the application’s functionality and user experience.",
+      "Improved Chrome's lighthouse score to 96 by migrating the codebase to Next.js and implementing SSR which led to significant improvement in load time and code base size.",
+      "Developed APIs on Lambda Functions in Node.js to facilitate smooth integration with ZOHOCRM, ZOHOERP, and Algolia, improving the application's functionality and user experience.",
       "Developed user-friendly screens using React-Native to efficiently manage inquiries and data flow within the application."
     ]
   },
@@ -41,8 +44,23 @@ const experiences = [
 ];
 
 export default function Experience() {
+  const cardVariants = {
+    hidden: { opacity: 0, y: 40 },
+    visible: (i: number) => ({
+      opacity: 1,
+      y: 0,
+      transition: {
+        duration: 0.6,
+        ease: "easeOut",
+        delay: i * 0.15,
+      },
+    }),
+  };
   return (
-    <section id="experience" className="bg-[#f1f5f9] text-black py-20 px-4">
+    <motion.section
+      id="experience"
+      className="bg-[#f1f5f9] text-black py-20 px-4"
+    >
       <div className="max-w-4xl mx-auto">
         <h2 className="text-4xl font-bold mb-6 text-center">Experience</h2>
 
@@ -50,15 +68,23 @@ export default function Experience() {
           <a
             href="/Animesh_Resume.pdf"
             download
-            className="bg-black text-white px-6 py-2 rounded hover:bg-gray-800 transition"
+            className="border border-indigo-400 text-indigo-400 px-6 py-3 rounded-lg font-semibold hover:bg-indigo-400 hover:text-white transition flex items-center gap-2"
           >
-            ⬇️ Download Resume
+            <HiDownload className="text-inherit" size={20} /> Download Resume
           </a>
         </div>
 
         <div className="relative border-l border-gray-300 pl-6">
           {experiences.map((exp, idx) => (
-            <div key={idx} className="mb-10">
+            <motion.div
+              key={idx}
+              className="mb-10"
+              variants={cardVariants}
+              initial="hidden"
+              whileInView="visible"
+              viewport={{ once: true, amount: 0.3 }}
+              custom={idx}
+            >
               <div className="absolute left-0 w-3 h-3 bg-blue-500 rounded-full -ml-[7px] mt-[6px]"></div>
               <h3 className="text-lg font-bold">{exp.title} @ {exp.company}</h3>
               <p className="text-sm text-gray-600 mb-1">{exp.period}</p>
@@ -67,10 +93,10 @@ export default function Experience() {
                   <li key={i}>{point}</li>
                 ))}
               </ul>
-            </div>
+            </motion.div>
           ))}
         </div>
       </div>
-    </section>
+    </motion.section>
   );
 }

@@ -22,11 +22,19 @@ const Navbar = () => {
       <div className="max-w-6xl mx-auto px-6 py-4 flex justify-between items-center text-white">
         <div className="text-xl font-bold">AC</div>
         <ul className="flex gap-6 font-medium">
-          {["Home", "Experience", "Skills", "Blogs", "Projects", "Content", "Contact"].map((item) => (
+          {[
+            "Home",
+            "Experience",
+            "Skills",
+            "Blogs",
+            "Projects",
+            "Content",
+            "Contact",
+          ].map((item) => (
             <li key={item}>
               <a
                 href={`#${item.toLowerCase()}`}
-                className="hover:text-accent transition"
+                className="font-semibold px-3 py-1 rounded transition hover:bg-indigo-400 hover:text-white"
               >
                 {item}
               </a>
