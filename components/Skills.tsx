@@ -79,9 +79,10 @@ import {
                   onClick={() => setSelected(option.label as "Frontend" | "Backend" | "Tools")}
                   className={`px-3 py-1 rounded-full font-semibold transition-colors duration-200 text-xs flex items-center gap-1
                     ${selected === option.label ? "bg-accent text-white" : "bg-gray-700 text-gray-300"}`}
+                  aria-label={option.label}
                 >
                   {option.icon}
-                  {option.label}
+                  <span className="hidden sm:inline">{option.label}</span>
                 </button>
               ))}
             </div>

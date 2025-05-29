@@ -59,18 +59,18 @@ const projects = [
 
 export default function Projects() {
   return (
-    <section id="projects" className="bg-gray-100 text-black py-20 px-4">
+    <section id="projects" className="bg-gray-100 text-black py-12 sm:py-20 px-4">
       <div className="max-w-5xl mx-auto">
-        <h2 className="text-4xl font-bold mb-12 text-center">My Projects</h2>
-        <div className="grid gap-8">
+        <h2 className="text-3xl sm:text-4xl font-bold mb-8 sm:mb-12 text-center">My Projects</h2>
+        <div className="grid gap-6 sm:gap-8">
           {projects.map((project, idx) => (
             <div 
               key={idx} 
-              className="bg-white rounded-lg shadow-sm hover:shadow-md transition-all duration-300 p-6"
+              className="bg-white rounded-lg shadow-sm hover:shadow-md transition-all duration-300 p-4 sm:p-6"
             >
-              <div className="flex justify-between items-start flex-wrap gap-4">
+              <div className="flex flex-col sm:flex-row sm:justify-between sm:items-start gap-4">
                 <div>
-                  <h3 className="text-2xl font-semibold text-gray-900">{project.title}</h3>
+                  <h3 className="text-xl sm:text-2xl font-semibold text-gray-900">{project.title}</h3>
                   <p className="text-sm text-gray-600 mt-1">
                     {project.period}
                   </p>
@@ -82,6 +82,7 @@ export default function Projects() {
                       target="_blank" 
                       rel="noopener noreferrer" 
                       className="text-gray-700 hover:text-black transition-colors"
+                      aria-label="GitHub Repository"
                     >
                       <FaGithub size={18} />
                     </a>
@@ -92,6 +93,7 @@ export default function Projects() {
                       target="_blank" 
                       rel="noopener noreferrer" 
                       className="text-gray-700 hover:text-black transition-colors"
+                      aria-label="Live Demo"
                     >
                       <FaExternalLinkAlt size={16} />
                     </a>
@@ -100,7 +102,7 @@ export default function Projects() {
               </div>
               <ul className="list-disc list-inside mt-4 space-y-2 text-gray-700">
                 {project.description.map((point, i) => (
-                  <li key={i} className="text-sm">{point}</li>
+                  <li key={i} className="text-sm sm:text-base">{point}</li>
                 ))}
               </ul>
               <div className="mt-6 flex flex-wrap gap-2">
