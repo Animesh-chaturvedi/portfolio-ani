@@ -3,6 +3,7 @@
 import React from "react";
 import dynamic from "next/dynamic";
 import { FaRocket } from "react-icons/fa";
+import { Typewriter } from "react-simple-typewriter";
 
 const GlitterP5Background = dynamic(() => import("./GlitterP5Background"), { ssr: false });
 
@@ -14,7 +15,18 @@ const Hero = () => {
         Hello <span className="inline-block animate-wave">👋🏼</span>
       </h1>
       <h2 className="text-4xl sm:text-5xl font-bold text-white leading-relaxed mb-2">
-        I'm <span className="font-semibold text-white">Animesh Chaturvedi</span>, a Frontend Engineer.
+        I&apos;m <span className="font-semibold text-white">Animesh Chaturvedi</span>,{' '}
+        <div className="text-accent">
+          <Typewriter
+            words={["Frontend Engineer", "Full-stack Engineer"]}
+            loop={0}
+            cursor
+            cursorStyle="|"
+            typeSpeed={80}
+            deleteSpeed={50}
+            delaySpeed={1500}
+          />
+        </div>
       </h2>
       <p className="text-xl sm:text-2xl max-w-xl text-white mt-4 leading-relaxed">
         I create clean, modern, and fully responsive websites that blend seamless design with functionality.

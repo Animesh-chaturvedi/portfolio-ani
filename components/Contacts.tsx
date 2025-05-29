@@ -6,7 +6,7 @@ const Contact = () => {
   return (
     <section id="contact" className="bg-gradient-to-b from-secondary to-primary py-20 px-4 text-white">
       <div className="max-w-3xl mx-auto text-center">
-        <h2 className="text-4xl font-bold mb-6">Let's Connect</h2>
+        <h2 className="text-4xl font-bold mb-6">Let&apos;s Connect</h2>
         <p className="text-gray-300 mb-10">
           Whether you have an opportunity or just want to say hello, my inbox is always open.
         </p>

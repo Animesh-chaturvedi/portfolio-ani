@@ -1,18 +1,29 @@
 import React, { useRef } from "react";
 import { ReactP5Wrapper, Sketch } from "react-p5-wrapper";
+import p5 from "p5";
 
 const PARTICLE_COUNT = 40;
 const PARTICLE_SIZE = [6, 14];
 const REPEL_RADIUS = 100;
 const REPEL_STRENGTH = 40;
 
+interface Particle {
+  x: number;
+  y: number;
+  ox: number;
+  oy: number;
+  size: number;
+  angle: number;
+  speed: number;
+}
+
 const GlitterP5Background = () => {
   // Store original positions and velocities
-  const particlesRef = useRef<any[]>([]);
+  const particlesRef = useRef<Particle[]>([]);
 
-  const sketch: Sketch = (p5) => {
-    let particles: any[] = [];
-    let mouse = { x: -1000, y: -1000 };
+  const sketch: Sketch = (p5: p5) => {
+    let particles: Particle[] = [];
+    const mouse = { x: -1000, y: -1000 };
     let w = 0;
     let h = 0;
 
@@ -36,7 +47,7 @@ const GlitterP5Background = () => {
       });
       particlesRef.current = particles;
       p5.noStroke();
-      (p5 as any)._renderer.canvas.addEventListener("mouseout", () => {
+      (p5 as unknown as { _renderer: { canvas: HTMLElement } })._renderer.canvas.addEventListener("mouseout", () => {
         mouse.x = -1000;
         mouse.y = -1000;
       });
@@ -55,9 +66,9 @@ const GlitterP5Background = () => {
     };
 
     p5.draw = () => {
-      // @ts-ignore
+      // @ts-expect-error p5.clear() is a valid method but TypeScript doesn't recognize it
       p5.clear();
-      for (let p of particles) {
+      for (const p of particles) {
         // Random walk for sparkle
         p.angle += (Math.random() - 0.5) * 0.1;
         p.x += Math.cos(p.angle) * p.speed;

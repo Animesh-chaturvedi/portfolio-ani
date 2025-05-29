@@ -45,14 +45,14 @@ const experiences = [
 
 export default function Experience() {
   const cardVariants = {
-    hidden: { opacity: 0, y: 40 },
+    hidden: { opacity: 0, y: 20 },
     visible: (i: number) => ({
       opacity: 1,
       y: 0,
       transition: {
-        duration: 0.6,
+        duration: 0.4,
         ease: "easeOut",
-        delay: i * 0.15,
+        delay: i * 0.1,
       },
     }),
   };
@@ -62,7 +62,7 @@ export default function Experience() {
       className="bg-[#f1f5f9] text-black py-20 px-4"
     >
       <div className="max-w-4xl mx-auto">
-        <h2 className="text-4xl font-bold mb-6 text-center">Experience</h2>
+        <h2 className="text-4xl font-bold mb-12 text-center">Experience</h2>
 
         <div className="flex justify-center mb-10">
           <a
@@ -74,25 +74,27 @@ export default function Experience() {
           </a>
         </div>
 
-        <div className="relative border-l border-gray-300 pl-6">
+        <div className="relative border-l border-gray-300 mt-8">
           {experiences.map((exp, idx) => (
             <motion.div
               key={idx}
-              className="mb-10"
+              className="mb-10 relative"
               variants={cardVariants}
               initial="hidden"
               whileInView="visible"
-              viewport={{ once: true, amount: 0.3 }}
+              viewport={{ once: true, amount: 0.2 }}
               custom={idx}
             >
-              <div className="absolute left-0 w-3 h-3 bg-blue-500 rounded-full -ml-[7px] mt-[6px]"></div>
-              <h3 className="text-lg font-bold">{exp.title} @ {exp.company}</h3>
-              <p className="text-sm text-gray-600 mb-1">{exp.period}</p>
-              <ul className="list-disc list-inside text-gray-800 space-y-1">
-                {exp.details.map((point, i) => (
-                  <li key={i}>{point}</li>
-                ))}
-              </ul>
+              <div className="absolute left-0 w-3 h-3 bg-blue-500 rounded-full -ml-[7px] mt-[6px] z-10"></div>
+              <div className="pl-4">
+                <h3 className="text-lg font-bold">{exp.title} @ {exp.company}</h3>
+                <p className="text-sm text-gray-600 mb-1">{exp.period}</p>
+                <ul className="list-disc list-inside text-gray-800 space-y-1">
+                  {exp.details.map((point, i) => (
+                    <li key={i}>{point}</li>
+                  ))}
+                </ul>
+              </div>
             </motion.div>
           ))}
         </div>
