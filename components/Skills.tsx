@@ -63,7 +63,7 @@ import {
   
           <div className="flex flex-wrap justify-center items-center gap-x-8 gap-y-2 mb-12">
             {sectionMap[selected].map((skill: { name: string; icon: JSX.Element }) => (
-              <div key={skill.name} className="flex items-center gap-1">
+              <div key={skill.name} className="flex items-center gap-1 text-white">
                 {React.cloneElement(skill.icon, { size: 22 })}
                 <span style={{ fontSize: '16px' }}>{skill.name}</span>
               </div>
@@ -78,7 +78,7 @@ import {
                   key={option.label}
                   onClick={() => setSelected(option.label as "Frontend" | "Backend" | "Tools")}
                   className={`px-3 py-1 rounded-full font-semibold transition-colors duration-200 text-xs flex items-center gap-1
-                    ${selected === option.label ? "bg-accent text-white" : "bg-gray-700 text-gray-300"}`}
+                    ${selected === option.label ? "bg-[rgb(34,211,238)] text-white" : "bg-gray-700 text-gray-300"}`}
                   aria-label={option.label}
                 >
                   {option.icon}
@@ -86,7 +86,7 @@ import {
                 </button>
               ))}
             </div>
-            <div className="w-3/4 max-w-xl h-3 rounded-full bg-gradient-to-r from-accent to-white" />
+            <div className="w-3/4 max-w-xl h-3 rounded-full bg-gradient-to-r from-[rgb(34,211,238)] to-white" />
           </div>
         </div>
       </section>

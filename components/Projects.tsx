@@ -59,19 +59,19 @@ const projects = [
 
 export default function Projects() {
   return (
-    <section id="projects" className="bg-gray-100 text-black py-12 sm:py-20 px-4">
+    <section id="projects" className="bg-blue-50/30 text-gray-900 py-12 sm:py-20 px-4">
       <div className="max-w-5xl mx-auto">
-        <h2 className="text-3xl sm:text-4xl font-bold mb-8 sm:mb-12 text-center">My Projects</h2>
+        <h2 className="text-3xl sm:text-4xl font-bold mb-8 sm:mb-12 text-center text-white">My Projects</h2>
         <div className="grid gap-6 sm:gap-8">
           {projects.map((project, idx) => (
             <div 
               key={idx} 
-              className="bg-white rounded-lg shadow-sm hover:shadow-md transition-all duration-300 p-4 sm:p-6"
+              className="bg-blue-50/30 backdrop-blur-sm rounded-lg shadow-sm hover:shadow-md transition-all duration-300 p-4 sm:p-6"
             >
               <div className="flex flex-col sm:flex-row sm:justify-between sm:items-start gap-4">
                 <div>
-                  <h3 className="text-xl sm:text-2xl font-semibold text-gray-900">{project.title}</h3>
-                  <p className="text-sm text-gray-600 mt-1">
+                  <h3 className="text-xl sm:text-2xl font-semibold text-white">{project.title}</h3>
+                  <p className="text-sm text-white mt-1">
                     {project.period}
                   </p>
                 </div>
@@ -81,7 +81,7 @@ export default function Projects() {
                       href={project.github} 
                       target="_blank" 
                       rel="noopener noreferrer" 
-                      className="text-gray-700 hover:text-black transition-colors"
+                      className="text-white hover:text-cyan-500 transition-colors"
                       aria-label="GitHub Repository"
                     >
                       <FaGithub size={18} />
@@ -92,7 +92,7 @@ export default function Projects() {
                       href={project.live} 
                       target="_blank" 
                       rel="noopener noreferrer" 
-                      className="text-gray-700 hover:text-black transition-colors"
+                      className="text-white hover:text-cyan-500 transition-colors"
                       aria-label="Live Demo"
                     >
                       <FaExternalLinkAlt size={16} />
@@ -100,7 +100,7 @@ export default function Projects() {
                   )}
                 </div>
               </div>
-              <ul className="list-disc list-inside mt-4 space-y-2 text-gray-700">
+              <ul className="list-disc list-inside mt-4 space-y-2 text-white">
                 {project.description.map((point, i) => (
                   <li key={i} className="text-sm sm:text-base">{point}</li>
                 ))}
@@ -109,7 +109,7 @@ export default function Projects() {
                 {project.techStack.map((tech, i) => (
                   <span
                     key={i}
-                    className="bg-blue-50 text-blue-700 text-xs font-medium px-3 py-1 rounded-full border border-blue-100"
+                    className="bg-[rgba(34,211,238,0.1)] text-[rgb(34,211,238)] text-xs font-medium px-3 py-1 rounded-full border border-[rgb(34,211,238)]"
                   >
                     {tech}
                   </span>

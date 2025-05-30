@@ -19,7 +19,14 @@ const Navbar = () => {
     setIsMenuOpen(!isMenuOpen);
   };
 
-  const navItems = ["Home", "Experience", "Skills", "Projects", "Contact"];
+  const navItems = [
+    "Home",
+    "Experience",
+    "Skills",
+    "Projects",
+    "Quick Builds",
+    "Contact",
+  ];
 
   return (
     <>

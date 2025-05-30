@@ -16,7 +16,7 @@ const Hero = () => {
       </h1>
       <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-white leading-relaxed mb-2">
         I&apos;m <span className="font-semibold text-white">Animesh Chaturvedi</span>,{' '}
-        <div className="text-accent">
+        <div className="text-[rgb(34,211,238)]">
           <Typewriter
             words={["Frontend Engineer", "Full-stack Engineer"]}
             loop={0}
@@ -34,13 +34,13 @@ const Hero = () => {
       <div className="flex flex-col sm:flex-row gap-4 mt-8">
         <a
           href="#projects"
-          className="bg-gradient-to-r from-primary via-accent to-secondary text-white border-2 border-white px-6 py-3 rounded-lg font-semibold shadow-lg hover:opacity-90 transition text-center"
+          className="bg-cyan-400 text-gray-900 border-2 border-cyan-400 px-6 py-3 rounded-lg font-semibold shadow-lg hover:bg-cyan-500 hover:border-cyan-500 transition text-center"
         >
-          <FaRocket className="inline-block mr-2 text-white" size={18} /> My Projects
+          <FaRocket className="inline-block mr-2 text-gray-900" size={18} /> My Projects
         </a>
         <a
           href="#experience"
-          className="border border-indigo-400 text-indigo-400 px-6 py-3 rounded-lg font-semibold hover:bg-indigo-400 hover:text-white transition text-center"
+          className="border border-cyan-400 text-cyan-400 px-6 py-3 rounded-lg font-semibold hover:bg-cyan-400 hover:text-gray-900 transition text-center"
         >
           Experience →
         </a>

@@ -14,7 +14,7 @@ const Contact = () => {
         <div className="flex flex-col sm:flex-row justify-center items-center gap-6">
           <a
             href="mailto:animesh.chaturvedi.1234@gmail.com"
-            className="flex items-center gap-2 border border-accent px-6 py-3 rounded-full hover:bg-accent transition"
+            className="flex items-center gap-2 border border-[rgb(34,211,238)] px-6 py-3 rounded-full hover:bg-[rgb(34,211,238)] transition"
           >
             <FaEnvelope />
             Email
@@ -23,7 +23,7 @@ const Contact = () => {
             href="https://www.linkedin.com/in/animesh-chaturvedi-a75620154"
             target="_blank"
             rel="noopener noreferrer"
-            className="flex items-center gap-2 border border-accent px-6 py-3 rounded-full hover:bg-accent transition"
+            className="flex items-center gap-2 border border-[rgb(34,211,238)] px-6 py-3 rounded-full hover:bg-[rgb(34,211,238)] transition"
           >
             <FaLinkedin />
             LinkedIn
@@ -32,7 +32,7 @@ const Contact = () => {
             href="https://github.com/Animesh-chaturvedi"
             target="_blank"
             rel="noopener noreferrer"
-            className="flex items-center gap-2 border border-accent px-6 py-3 rounded-full hover:bg-accent transition"
+            className="flex items-center gap-2 border border-[rgb(34,211,238)] px-6 py-3 rounded-full hover:bg-[rgb(34,211,238)] transition"
           >
             <FaGithub />
             GitHub

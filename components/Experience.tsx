@@ -63,22 +63,22 @@ export default function Experience() {
   return (
     <motion.section
       id="experience"
-      className="bg-[#f1f5f9] text-black py-20 px-4"
+      className="bg-blue-50/30 text-white py-20 px-4"
     >
       <div className="max-w-4xl mx-auto">
-        <h2 className="text-4xl font-bold mb-12 text-center">Experience</h2>
+        <h2 className="text-4xl font-bold mb-12 text-center text-white">Experience</h2>
 
         <div className="flex justify-center mb-10">
           <a
             href="/Animesh_Resume.pdf"
             download
-            className="border border-indigo-400 text-indigo-400 px-6 py-3 rounded-lg font-semibold hover:bg-indigo-400 hover:text-white transition flex items-center gap-2"
+            className="border border-cyan-400 text-cyan-400 px-6 py-3 rounded-lg font-semibold hover:bg-cyan-400 hover:text-gray-900 transition flex items-center gap-2"
           >
             <HiDownload className="text-inherit" size={20} /> Download Resume
           </a>
         </div>
 
-        <div className="relative border-l border-gray-300 mt-8">
+        <div className="relative border-l border-white/50 mt-8">
           {experiences.map((exp, idx) => (
             <motion.div
               key={idx}
@@ -89,16 +89,16 @@ export default function Experience() {
               viewport={{ once: true, amount: 0.2 }}
               custom={idx}
             >
-              <div className="absolute left-0 w-3 h-3 bg-blue-500 rounded-full -ml-[7px] mt-[6px] z-10"></div>
+              <div className="absolute left-0 w-3 h-3 bg-white rounded-full -ml-[7px] mt-[6px] z-10"></div>
               <div className="pl-4">
-                <h3 className="text-lg font-bold">
+                <h3 className="text-lg font-bold text-white">
                   {exp.title} @{" "}
                   {exp.companyLink ? (
                     <a
                       href={exp.companyLink}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="text-blue-600 hover:text-blue-800 transition-colors inline-flex items-center gap-1"
+                      className="text-cyan-300 hover:text-cyan-100 transition-colors inline-flex items-center gap-1"
                     >
                       {exp.company}
                       <FaExternalLinkAlt size={12} className="inline" />
@@ -107,8 +107,8 @@ export default function Experience() {
                     exp.company
                   )}
                 </h3>
-                <p className="text-sm text-gray-600 mb-1">{exp.period}</p>
-                <ul className="list-disc list-inside text-gray-800 space-y-1">
+                <p className="text-sm text-white/80 mb-1">{exp.period}</p>
+                <ul className="list-disc list-inside text-white/90 space-y-1">
                   {exp.details.map((point, i) => (
                     <li key={i}>{point}</li>
                   ))}
