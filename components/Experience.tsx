@@ -2,11 +2,13 @@
 
 import { motion } from "framer-motion";
 import { HiDownload } from "react-icons/hi";
+import { FaExternalLinkAlt } from "react-icons/fa";
 
 const experiences = [
   {
     title: "Senior Software Engineer",
     company: "Featurely.AI",
+    companyLink: "https://featurely.ai",
     period: "Jan 2025 – Mar 2025",
     details: [
       "Led UI/UX initiatives, overseeing design and development while managing a team of two developers to enhance user experience and interface consistency.",
@@ -16,6 +18,7 @@ const experiences = [
   {
     title: "Software Engineer",
     company: "REP3",
+    companyLink: "https://rep3.gg",
     period: "Aug 2023 – Dec 2024",
     details: [
       "Developed home and campaign pages for partner DAOs at REP3 using Next.js and SCSS, enhancing user engagement and platform aesthetics.",
@@ -26,6 +29,7 @@ const experiences = [
   {
     title: "Full Stack Engineer",
     company: "Lal10",
+    companyLink: "https://lal10.com",
     period: "Jun 2022 – Jul 2023",
     details: [
       "Improved Chrome's lighthouse score to 96 by migrating the codebase to Next.js and implementing SSR which led to significant improvement in load time and code base size.",
@@ -87,7 +91,22 @@ export default function Experience() {
             >
               <div className="absolute left-0 w-3 h-3 bg-blue-500 rounded-full -ml-[7px] mt-[6px] z-10"></div>
               <div className="pl-4">
-                <h3 className="text-lg font-bold">{exp.title} @ {exp.company}</h3>
+                <h3 className="text-lg font-bold">
+                  {exp.title} @{" "}
+                  {exp.companyLink ? (
+                    <a
+                      href={exp.companyLink}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="text-blue-600 hover:text-blue-800 transition-colors inline-flex items-center gap-1"
+                    >
+                      {exp.company}
+                      <FaExternalLinkAlt size={12} className="inline" />
+                    </a>
+                  ) : (
+                    exp.company
+                  )}
+                </h3>
                 <p className="text-sm text-gray-600 mb-1">{exp.period}</p>
                 <ul className="list-disc list-inside text-gray-800 space-y-1">
                   {exp.details.map((point, i) => (
