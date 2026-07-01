@@ -82,8 +82,8 @@ export default function Hero() {
           <motion.div variants={fadeUp} className="mt-10 flex flex-wrap gap-10">
             {[
               { value: "4+",   label: "Years experience" },
-              { value: "5+",   label: "Apps shipped" },
-              { value: "250+", label: "Users served" },
+              { value: "10+",  label: "Apps shipped" },
+              { value: "50k+", label: "Users served" },
             ].map(stat => (
               <div key={stat.label}>
                 <div className="text-4xl font-black text-white">{stat.value}</div>
