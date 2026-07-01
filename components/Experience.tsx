@@ -119,7 +119,7 @@ export default function Experience() {
           <a
             href="/Animesh_Resume.pdf"
             download
-            className="inline-flex items-center gap-2 px-5 py-2.5 rounded-lg border border-accent/40 text-accent-light hover:bg-accent-dim text-sm font-semibold transition"
+            className="hidden sm:inline-flex items-center gap-2 px-5 py-2.5 rounded-lg border border-accent/40 text-accent-light hover:bg-accent-dim text-sm font-semibold transition"
           >
             <FaDownload size={13} /> Download CV
           </a>
