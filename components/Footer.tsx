@@ -1,12 +1,10 @@
-const Footer = () => {
-    return (
-      <footer className="bg-black text-gray-400 text-sm py-6 px-4 text-center">
-        <p>
-          © {new Date().getFullYear()} Animesh Chaturvedi. Built with Next.js & TailwindCSS.
-        </p>
-      </footer>
-    );
-  };
-  
-  export default Footer;
-  
+export default function Footer() {
+  return (
+    <footer className="py-8 px-6 border-t border-white/5 text-center">
+      <p className="text-slate-600 text-xs font-mono">
+        © {new Date().getFullYear()} Animesh Chaturvedi —{" "}
+        <span className="text-accent-light">Designed & built from scratch</span>
+      </p>
+    </footer>
+  );
+}

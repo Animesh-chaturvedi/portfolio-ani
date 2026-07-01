@@ -1,53 +1,131 @@
 "use client";
 
-import React from "react";
-import dynamic from "next/dynamic";
-import { FaRocket } from "react-icons/fa";
+import { useRef } from "react";
+import { motion, useMotionValue, useTransform, useSpring } from "framer-motion";
 import { Typewriter } from "react-simple-typewriter";
+import { FaArrowRight, FaDownload } from "react-icons/fa";
 
-const GlitterP5Background = dynamic(() => import("./GlitterP5Background"), { ssr: false });
-
-const Hero = () => {
-  return (
-    <section className="relative min-h-screen flex flex-col justify-center items-center text-center px-4 sm:px-6 bg-gradient-to-b from-primary overflow-hidden">
-      <GlitterP5Background />
-      <h1 className="text-xl sm:text-2xl md:text-3xl font-normal text-gray-300 mb-2 leading-relaxed">
-        Hello <span className="inline-block animate-wave">👋🏼</span>
-      </h1>
-      <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-white leading-relaxed mb-2">
-        I&apos;m <span className="font-semibold text-white">Animesh Chaturvedi</span>,{' '}
-        <div className="text-[rgb(34,211,238)]">
-          <Typewriter
-            words={["Frontend Engineer", "Full-stack Engineer"]}
-            loop={0}
-            cursor
-            cursorStyle="|"
-            typeSpeed={80}
-            deleteSpeed={50}
-            delaySpeed={1500}
-          />
-        </div>
-      </h2>
-      <p className="text-lg sm:text-xl md:text-2xl max-w-xl text-white mt-4 leading-relaxed">
-        I create clean, modern, and fully responsive websites that blend seamless design with functionality.
-      </p>
-      <div className="flex flex-col sm:flex-row gap-4 mt-8">
-        <a
-          href="#projects"
-          className="bg-cyan-400 text-gray-900 border-2 border-cyan-400 px-6 py-3 rounded-lg font-semibold shadow-lg hover:bg-cyan-500 hover:border-cyan-500 transition text-center"
-        >
-          <FaRocket className="inline-block mr-2 text-gray-900" size={18} /> My Projects
-        </a>
-        <a
-          href="#experience"
-          className="border border-cyan-400 text-cyan-400 px-6 py-3 rounded-lg font-semibold hover:bg-cyan-400 hover:text-gray-900 transition text-center"
-        >
-          Experience →
-        </a>
-      </div>
-    </section>
-  );
+const stagger = {
+  hidden: {},
+  visible: { transition: { staggerChildren: 0.12, delayChildren: 0.3 } },
 };
 
-export default Hero;
-  
+const fadeUp = {
+  hidden: { opacity: 0, y: 32 },
+  visible: { opacity: 1, y: 0, transition: { duration: 0.6, ease: [0.22, 1, 0.36, 1] } },
+};
+
+export default function Hero() {
+  const ref = useRef<HTMLDivElement>(null);
+  const mouseX = useMotionValue(0);
+  const mouseY = useMotionValue(0);
+
+  const rotateX = useSpring(useTransform(mouseY, [-300, 300], [6, -6]), { stiffness: 80, damping: 20 });
+  const rotateY = useSpring(useTransform(mouseX, [-300, 300], [-6, 6]), { stiffness: 80, damping: 20 });
+
+  const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
+    if (!ref.current) return;
+    const rect = ref.current.getBoundingClientRect();
+    mouseX.set(e.clientX - rect.left - rect.width / 2);
+    mouseY.set(e.clientY - rect.top - rect.height / 2);
+  };
+
+  const handleMouseLeave = () => {
+    mouseX.set(0);
+    mouseY.set(0);
+  };
+
+  return (
+    <section
+      id="home"
+      ref={ref}
+      onMouseMove={handleMouseMove}
+      onMouseLeave={handleMouseLeave}
+      className="relative min-h-screen flex items-center px-6 md:px-16 overflow-hidden"
+    >
+      {/* Ambient blobs */}
+      <div className="absolute -top-32 -right-32 w-[500px] h-[500px] bg-indigo-600/20 rounded-full blur-[120px] pointer-events-none" />
+      <div className="absolute -bottom-32 -left-32 w-[400px] h-[400px] bg-violet-700/15 rounded-full blur-[120px] pointer-events-none" />
+
+      <div className="relative z-10 max-w-6xl mx-auto w-full pt-24 pb-16">
+        <motion.div variants={stagger} initial="hidden" animate="visible">
+
+          {/* Available badge */}
+          <motion.div variants={fadeUp} className="mb-8 inline-flex items-center gap-2 px-4 py-1.5 rounded-full glass text-sm text-slate-300 border border-indigo-500/30">
+            <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse-slow" />
+            Available for new opportunities
+          </motion.div>
+
+          {/* Name with 3D parallax */}
+          <motion.div style={{ rotateX, rotateY, transformPerspective: 1000 }}>
+            <motion.h1 variants={fadeUp} className="text-[clamp(3.5rem,10vw,8rem)] font-black leading-none tracking-tight">
+              <span className="text-white block">ANIMESH</span>
+              <span className="gradient-text glow-text block">CHATURVEDI</span>
+            </motion.h1>
+          </motion.div>
+
+          {/* Role typewriter */}
+          <motion.p variants={fadeUp} className="mt-6 text-lg md:text-xl font-mono text-slate-400">
+            <span className="text-accent-light">&gt; </span>
+            <Typewriter
+              words={["Full-Stack Engineer", "AI Engineer", "Tech Lead", "React Native Developer"]}
+              loop={0}
+              cursor
+              cursorStyle="|"
+              typeSpeed={70}
+              deleteSpeed={40}
+              delaySpeed={2000}
+            />
+          </motion.p>
+
+          {/* Stats */}
+          <motion.div variants={fadeUp} className="mt-10 flex flex-wrap gap-10">
+            {[
+              { value: "4+",   label: "Years experience" },
+              { value: "5+",   label: "Apps shipped" },
+              { value: "250+", label: "Users served" },
+            ].map(stat => (
+              <div key={stat.label}>
+                <div className="text-4xl font-black text-white">{stat.value}</div>
+                <div className="text-sm text-slate-500 mt-1">{stat.label}</div>
+              </div>
+            ))}
+          </motion.div>
+
+          {/* CTAs */}
+          <motion.div variants={fadeUp} className="mt-10 flex flex-wrap gap-4">
+            <a
+              href="#projects"
+              className="group inline-flex items-center gap-2 px-6 py-3 bg-accent hover:bg-accent-light text-white rounded-lg font-semibold transition-all duration-200 glow-accent"
+            >
+              View Work
+              <FaArrowRight size={14} className="group-hover:translate-x-1 transition-transform" />
+            </a>
+            <a
+              href="/Animesh_Resume.pdf"
+              download
+              className="inline-flex items-center gap-2 px-6 py-3 rounded-lg font-semibold border border-slate-700 hover:border-slate-500 text-slate-300 hover:text-white transition-all duration-200"
+            >
+              <FaDownload size={13} /> Download CV
+            </a>
+          </motion.div>
+        </motion.div>
+      </div>
+
+      {/* Scroll hint */}
+      <motion.div
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ delay: 2 }}
+        className="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-1 text-slate-600"
+      >
+        <span className="text-xs tracking-widest uppercase">Scroll</span>
+        <motion.div
+          animate={{ y: [0, 6, 0] }}
+          transition={{ repeat: Infinity, duration: 1.4, ease: "easeInOut" }}
+          className="w-px h-8 bg-gradient-to-b from-slate-600 to-transparent"
+        />
+      </motion.div>
+    </section>
+  );
+}

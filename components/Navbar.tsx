@@ -1,104 +1,111 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import { motion, AnimatePresence } from "framer-motion";
 import { FaBars, FaTimes } from "react-icons/fa";
 
-const Navbar = () => {
-  const [scrolled, setScrolled] = useState(false);
-  const [isMenuOpen, setIsMenuOpen] = useState(false);
+const navItems = [
+  { label: "Experience", href: "#experience" },
+  { label: "Skills",     href: "#skills" },
+  { label: "Projects",   href: "#projects" },
+  { label: "Contact",    href: "#contact" },
+];
+
+export default function Navbar() {
+  const [scrolled, setScrolled]     = useState(false);
+  const [menuOpen, setMenuOpen]     = useState(false);
 
   useEffect(() => {
-    const listener = () => {
-      setScrolled(window.scrollY > window.innerHeight * 0.01); // 1vh scroll trigger
-    };
-    window.addEventListener("scroll", listener);
-    return () => window.removeEventListener("scroll", listener);
+    const onScroll = () => setScrolled(window.scrollY > 60);
+    window.addEventListener("scroll", onScroll);
+    return () => window.removeEventListener("scroll", onScroll);
   }, []);
-
-  const toggleMenu = () => {
-    setIsMenuOpen(!isMenuOpen);
-  };
-
-  const navItems = [
-    "Home",
-    "Experience",
-    "Skills",
-    "Projects",
-    "Quick Builds",
-    "Contact",
-  ];
 
   return (
     <>
-      <nav
+      <motion.nav
+        initial={{ y: -80, opacity: 0 }}
+        animate={{ y: 0, opacity: 1 }}
+        transition={{ duration: 0.5, ease: "easeOut" }}
         className={`fixed top-0 w-full z-50 transition-all duration-300 ${
-          scrolled ? "bg-black/70 backdrop-blur-md shadow-md" : "bg-secondary"
+          scrolled ? "glass shadow-lg shadow-black/40 py-3" : "bg-transparent py-5"
         }`}
       >
-        <div className="max-w-6xl mx-auto px-4 sm:px-6 py-4 flex justify-between items-center text-white">
-          <div className="text-xl font-bold">AC</div>
-          
-          {/* Mobile menu button */}
-          <button
-            className="md:hidden p-2 rounded-lg hover:bg-white/10 transition-colors"
-            onClick={toggleMenu}
-            aria-label="Toggle menu"
-          >
-            {isMenuOpen ? <FaTimes size={24} /> : <FaBars size={24} />}
-          </button>
+        <div className="max-w-6xl mx-auto px-6 flex items-center justify-between">
+          <a href="#home" className="text-xl font-black tracking-tight">
+            <span className="text-white">A</span>
+            <span className="gradient-text">C</span>
+          </a>
 
-          {/* Desktop menu */}
-          <ul className="hidden md:flex gap-6 font-medium">
+          {/* Desktop nav */}
+          <ul className="hidden md:flex items-center gap-1">
             {navItems.map((item) => (
-              <li key={item}>
+              <li key={item.label}>
                 <a
-                  href={`#${item.toLowerCase()}`}
-                  className="font-semibold px-3 py-1 rounded transition hover:bg-indigo-400 hover:text-white"
+                  href={item.href}
+                  className="px-4 py-2 rounded-lg text-sm font-medium text-slate-400 hover:text-white hover:bg-white/5 transition-all"
                 >
-                  {item}
+                  {item.label}
                 </a>
               </li>
             ))}
+            <li>
+              <a
+                href="/Animesh_Resume.pdf"
+                download
+                className="ml-4 px-4 py-2 rounded-lg text-sm font-semibold bg-accent hover:bg-accent-light text-white transition-all"
+              >
+                Resume
+              </a>
+            </li>
           </ul>
-        </div>
-      </nav>
 
-      {/* Mobile menu overlay */}
-      <div
-        className={`fixed inset-0 bg-black/90 backdrop-blur-md z-50 transition-transform duration-300 md:hidden ${
-          isMenuOpen ? "translate-x-0" : "translate-x-full"
-        }`}
-      >
-        <div className="relative h-full">
-          {/* Close button */}
+          {/* Mobile toggle */}
           <button
-            className="absolute top-4 right-4 p-2 rounded-lg hover:bg-white/10 transition-colors text-white"
-            onClick={toggleMenu}
-            aria-label="Close menu"
+            className="md:hidden text-slate-400 hover:text-white transition"
+            onClick={() => setMenuOpen(!menuOpen)}
           >
-            <FaTimes size={24} />
+            {menuOpen ? <FaTimes size={20} /> : <FaBars size={20} />}
           </button>
-
-          {/* Menu items */}
-          <div className="flex flex-col items-center justify-center h-full">
-            <ul className="flex flex-col items-center gap-8 text-xl">
-              {navItems.map((item) => (
-                <li key={item}>
-                  <a
-                    href={`#${item.toLowerCase()}`}
-                    className="font-semibold px-3 py-1 rounded transition hover:bg-indigo-400 hover:text-white"
-                    onClick={() => setIsMenuOpen(false)}
-                  >
-                    {item}
-                  </a>
-                </li>
-              ))}
-            </ul>
-          </div>
         </div>
-      </div>
+      </motion.nav>
+
+      {/* Mobile menu */}
+      <AnimatePresence>
+        {menuOpen && (
+          <motion.div
+            initial={{ opacity: 0, y: -20 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: -20 }}
+            transition={{ duration: 0.2 }}
+            className="fixed inset-0 z-40 glass flex flex-col items-center justify-center gap-8 md:hidden"
+          >
+            <button
+              className="absolute top-5 right-6 text-slate-400"
+              onClick={() => setMenuOpen(false)}
+            >
+              <FaTimes size={22} />
+            </button>
+            {navItems.map((item) => (
+              <a
+                key={item.label}
+                href={item.href}
+                onClick={() => setMenuOpen(false)}
+                className="text-2xl font-bold text-white hover:gradient-text transition"
+              >
+                {item.label}
+              </a>
+            ))}
+            <a
+              href="/Animesh_Resume.pdf"
+              download
+              className="px-8 py-3 bg-accent rounded-lg font-semibold text-white"
+            >
+              Resume
+            </a>
+          </motion.div>
+        )}
+      </AnimatePresence>
     </>
   );
-};
-
-export default Navbar;
+}

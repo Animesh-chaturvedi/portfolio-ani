@@ -27,13 +27,27 @@ const GlitterP5Background = () => {
     let w = 0;
     let h = 0;
 
+    const edgeBiasedPosition = (): { x: number; y: number } => {
+      const cx = w / 2;
+      const cy = h / 2;
+      const maxDist = Math.sqrt(cx * cx + cy * cy);
+      for (let i = 0; i < 200; i++) {
+        const x = Math.random() * w;
+        const y = Math.random() * h;
+        const dist = Math.sqrt((x - cx) ** 2 + (y - cy) ** 2);
+        // Accept probability grows quadratically with distance from center
+        // so center stays sparse and edges stay dense
+        if (Math.random() < (dist / maxDist) ** 2) return { x, y };
+      }
+      return { x: Math.random() * w, y: Math.random() * h };
+    };
+
     p5.setup = () => {
       w = p5.windowWidth;
       h = p5.windowHeight;
       p5.createCanvas(w, h);
       particles = Array.from({ length: PARTICLE_COUNT }).map(() => {
-        const x = Math.random() * w;
-        const y = Math.random() * h;
+        const { x, y } = edgeBiasedPosition();
         const size = PARTICLE_SIZE[0] + Math.random() * (PARTICLE_SIZE[1] - PARTICLE_SIZE[0]);
         return {
           x,
@@ -97,7 +111,7 @@ const GlitterP5Background = () => {
   };
 
   return (
-    <div className="absolute inset-0 w-full h-full pointer-events-none -z-10">
+    <div className="absolute inset-0 w-full h-full pointer-events-none z-0">
       <ReactP5Wrapper sketch={sketch} />
     </div>
   );
