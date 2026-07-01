@@ -95,7 +95,7 @@ export default function Hero() {
           {/* CTAs */}
           <motion.div variants={fadeUp} className="mt-10 flex flex-wrap gap-4">
             <a
-              href="#projects"
+              href="#experience"
               className="group inline-flex items-center gap-2 px-6 py-3 bg-accent hover:bg-accent-light text-white rounded-lg font-semibold transition-all duration-200 glow-accent"
             >
               View Work
