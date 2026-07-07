@@ -103,8 +103,8 @@ function Logo({ src, fallback }: { src: string; fallback: string }) {
 
 export default function Experience() {
   return (
-    <section id="experience" className="py-24 px-6 md:px-16">
-      <div className="max-w-4xl mx-auto">
+    <section id="experience" className="py-24">
+      <div className="max-w-6xl mx-auto px-6">
 
         {/* Header */}
         <motion.div

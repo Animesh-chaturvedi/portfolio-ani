@@ -25,8 +25,8 @@ const quickBuilds = [
 
 export default function QuickBuilds() {
   return (
-    <section id="quick-builds" className="py-24 px-6 md:px-16">
-      <div className="max-w-6xl mx-auto">
+    <section id="quick-builds" className="py-24">
+      <div className="max-w-6xl mx-auto px-6">
 
         <motion.div
           initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }}

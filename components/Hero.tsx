@@ -41,13 +41,13 @@ export default function Hero() {
       ref={ref}
       onMouseMove={handleMouseMove}
       onMouseLeave={handleMouseLeave}
-      className="relative min-h-screen flex items-center px-6 md:px-16 overflow-hidden"
+      className="relative min-h-screen flex items-center overflow-hidden"
     >
       {/* Ambient blobs */}
       <div className="absolute -top-32 -right-32 w-[500px] h-[500px] bg-indigo-600/20 rounded-full blur-[120px] pointer-events-none" />
       <div className="absolute -bottom-32 -left-32 w-[400px] h-[400px] bg-violet-700/15 rounded-full blur-[120px] pointer-events-none" />
 
-      <div className="relative z-10 max-w-6xl mx-auto w-full pt-24 pb-16">
+      <div className="relative z-10 max-w-6xl mx-auto px-6 w-full pt-24 pb-16">
         <motion.div variants={stagger} initial="hidden" animate="visible">
 
           {/* Available badge */}
@@ -68,7 +68,7 @@ export default function Hero() {
           <motion.p variants={fadeUp} className="mt-6 text-lg md:text-xl font-mono text-slate-400">
             <span className="text-accent-light">&gt; </span>
             <Typewriter
-              words={["Full-Stack Engineer", "AI Engineer", "Tech Lead", "React Native Developer"]}
+              words={["Full-Stack Engineer", "AI Engineer", "Tech Lead"]}
               loop={0}
               cursor
               cursorStyle="|"
@@ -82,8 +82,8 @@ export default function Hero() {
           <motion.div variants={fadeUp} className="mt-10 flex flex-wrap gap-10">
             {[
               { value: "4+",   label: "Years experience" },
-              { value: "10+",  label: "Apps shipped" },
-              { value: "50k+", label: "Users served" },
+              { value: "10+",  label: "Products shipped" },
+              { value: "50k+", label: "Daily active users" },
             ].map(stat => (
               <div key={stat.label}>
                 <div className="text-4xl font-black text-white">{stat.value}</div>

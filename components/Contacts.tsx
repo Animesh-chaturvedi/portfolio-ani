@@ -11,7 +11,7 @@ const links = [
 
 export default function Contact() {
   return (
-    <section id="contact" className="relative py-32 px-6 md:px-16 overflow-hidden">
+    <section id="contact" className="relative py-32 overflow-hidden">
 
       {/* Bottom ambient glow */}
       <div className="absolute bottom-0 left-1/2 -translate-x-1/2 w-[600px] h-[250px] bg-indigo-600/15 blur-[100px] pointer-events-none" />
